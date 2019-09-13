@@ -1,0 +1,9 @@
+.navbar-link {
+    color : white;
+    
+
+}
+a:hover {
+    color:greenyellow;
+    text-decoration: underline;
+}
