@@ -1,6 +1,90 @@
 {% extends 'modelo.html' %}
 
 {% block content %}
-<h1>Cliente</h1>
-<p class="importat">formulario lista</p>
+
+<form>
+    <h1>Cadastrar Cliente</h1>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputCodigo">Código</label>
+            <input type="Id" class="form-control" id="inputIdcliente" placeholder="Id_clientes">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputNome">nome cliente</label>
+            <input type="Nome" class="form-control" id="inputNome" placeholder="Nome cliente">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputEndereço">Endereço</label>
+            <input type="Id" class="form-control" id="inputIdEndereço" placeholder="Endereço">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputNome">Numero</label>
+            <input type="Numero" class="form-control" id="inputNumero" placeholder="Numero">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label for="inputCEP">CEP</label>
+            <input type="CEP" class="form-control" id="inputIdCEP" placeholder="CEP">
+        </div>
+        <div class="form-group col-md-2">
+            <label for="inputBairro">Bairro</label>
+            <input type="Bairro" class="form-control" id="inputBairro" placeholder="Bairro">
+        </div>
+        <div class="form-grup col-md-6">
+            <label for="inputObservação">Observação</label>
+            <input type="Observação" class="form-control" id="inputObservação" placeholder="Observação">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputCity">Cidade</label>
+            <input type="text" class="form-control" id="inputCity">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputEstado">Estado</label>
+            <select id="inputEstado" class="form-control">
+                <option selected>Escolher...</option>
+                <option>Acre (AC)</option>
+                <option>Alagoas (AL)</option>
+                <option>Amapá (AP)</option>
+                <option>Amazonas (AM)</option>
+                <option>Bahia (BA)</option>
+                <option>Ceará (CE)</option>
+                <option>Distrito Federal (DF)</option>
+                <option>Espírito Santo (ES)</option>
+                <option>Goiás (GO)</option>
+                <option>Maranhão (MA)</option>
+                <option>Mato Grosso (MT)</option>
+                <option>Mato Grosso do Sul (MS)</option>
+                <option>Minas Gerais (MG)</option>
+                <option>Paraíba (PB)</option>
+                <option>Paraná (PR)</option>
+                <option>Pernambuco (PE)</option>
+                <option>Piauí (PI)</option>
+                <option>Rio de Janeiro (RJ)</option>
+                <option>Rio Grande do Norte (RN)</option>
+                <option>Rio Grande do Sul (RS)</option>
+                <option>Rondônia (RO)</option>
+                <option>Roraima (RR)</option>
+                <option>Santa Catarina (SC)</option>
+                <option>São Paulo (SP)</option>
+                <option>Sergipe (SE)</option>
+                <option>Tocantins (TO)</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="gridCheck">
+            <label class="form-check-label" for="gridCheck">
+                Clique pra salvar
+            </label>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Salvar</button>
+</form>
+
 {% endblock content %}

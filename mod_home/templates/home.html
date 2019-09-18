@@ -1,6 +1,12 @@
 {% extends 'modelo.html' %}
 
 {% block content %}
-<h1>Projeto Python</h1>
-<p class="importat"></p>
+
+{% if 'user' in session %}
+
+Bem-vindo <b>{{ session['user'] }}</b>
+
+{% endif %}
 {% endblock content %}
+
+ 
