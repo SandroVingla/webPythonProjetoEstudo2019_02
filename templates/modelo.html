@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>modelo</title>
+    
+    <link rel="icon" href="{{ url_for('static',filename='logo.jpg') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='bootstrap-4.1.3/css/bootstrap.min.css') }}">
 
     <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
@@ -30,12 +32,19 @@
 
                 <div class="col-sm">
 
+                    <li class="nav-item {% if active_page == 'usuario' %}active{% endif %}">
+                        <a class="navbar-link" href="/usuario">Usuario</a>
+                    </li>
+                </div>
+
+                <div class="col-sm">
+
                     <li class="nav-item {% if active_page == 'home' %}active{% endif %}">
                         <a class="navbar-link" href="/home">home</a>
                     </li>
                 </div>
                 <div class="col-sm">
-                    <li class="nav-item {% if active_page == 'formListaCliente' %}active{% endif %}">
+                    <li class="nav-item {% if active_page == 'formCliente' %}active{% endif %}">
                         <a class="navbar-link" href="/cliente">cliente</a>
                     </li>
                 </div>

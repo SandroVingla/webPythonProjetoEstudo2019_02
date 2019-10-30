@@ -1,6 +1,40 @@
-{% extends 'modelo.html' %}
+{% extends "modelo.html" %}
+
+{% block title %}Produto{% endblock %}
 
 {% block content %}
-<h1>Produto</h1>
-<p class="importat">formulario</p>
-{% endblock content %}
+ 
+<body>
+
+    <h1>Novo Produto</h1>
+    
+    <form name="produto" method="POST" action="{{ url_for('produto.addProduto') }}" enctype="multipart/form-data">
+            <label for="id_produto">Código :</label>
+            <input type="text" name="id_produto" id="id_produto">
+
+            <label for="descricao">Descrição do Produto :</label>
+            <input type="decricao" name="descricao" class="form-control" id="descricao" placeholder="decricao">
+             
+
+            <label for="valor">Valor:</label>
+            <input  type="valor" name="valor" class="form-control" id="inputValor" placeholder="valor">
+
+            <label for="imagem">Imagem:</label>
+            <input type="file" name="imagem" accept="image/*" id="imagem">
+
+            <br>
+            <img src='{{ produto.imagem }}'>
+
+            <br>
+            {% if produto.id_produto == 0 %}
+            <button type='submit' name='addProdutoDB' id='addProdutoDB'>Salvar</button>
+            {% else %}
+            <button type='submit' name='salvaEditaProdutoDB' id='salvaEditaProdutoDB'>Salvar</button>
+
+            <button type='submit' name='salvaExcluiProdutoDB' id='salvaExcluiProdutoDB'>Excluir</button>
+            {% endif %}
+            
+        </form>
+</body>
+
+{% endblock %}

@@ -1,7 +1,8 @@
 from flask import Flask, render_template, redirect, url_for, Blueprint, session
 from datetime import timedelta
+import pymysql
 
- 
+from mod_usuario.usuario import bp_usuario
 from mod_login.login import bp_login
 from mod_home.home import bp_home
 from mod_cliente.cliente import bp_cliente
@@ -17,7 +18,7 @@ def create_app():
 
     app.config.from_pyfile('config.py')
 
-
+    app.register_blueprint(bp_usuario)
     app.register_blueprint(bp_login)
     app.register_blueprint(bp_home)
     app.register_blueprint(pedidoBP)
@@ -32,7 +33,7 @@ def create_app():
     @app.before_request
     def before_request():
         session.permanent = True
-        app.permanent_session_lifetime = timedelta(minutes=1)
+        app.permanent_session_lifetime = timedelta(minutes=100)
 
 
     return app

@@ -1,0 +1,51 @@
+{% extends 'modelo.html' %}
+
+{% block title %}usuario{% endblock %}
+
+{% block content %}
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row-mb-6">
+            <form action="{{ url_for('usuario.add') }}" method="POST">
+                <button class="btn btn-info" type="submit" name="formNovoUsuario"><i class="fas fa-plus-circle"></i>
+                    Novo usuario</button>
+            </form>
+        </div>
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>Usuários</h2>
+                        
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>id</th>
+                                    <th>Nome</th>
+                                    <th>login</th>
+                                    <th>senha</th>
+                                    <th>grupo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>12</td>
+                                    <td>Sandro</td>
+                                    <td>san</td>
+                                    <td>1212</td>
+                                    <td>ADIMIN</td>
+                                     
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+         
+    </div>
+</div>
+
+{% endblock content %}

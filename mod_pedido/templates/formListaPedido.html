@@ -1,6 +1,53 @@
-{% extends 'modelo.html' %}
+{% extends "modelo.html" %}
+
+{% block title %}Pedidos{% endblock %}
 
 {% block content %}
-<h1>lista</h1>
-<p class="importat">lista pedido</p>
-{% endblock content %}
+<form action="{{ url_for('pedido.formPedido') }}" method="POST">
+    <button class="btn btn-danger" type="submit" name="+Pedido"><i class="fas fa-plus-circle"></i> + Novo
+        Pedido</button>
+</form>
+<br>
+<table class="table table-sm table-hover table-responsive">
+    <!--  table-dark table-bordered table-striped -->
+    <thead>
+        <!--   class="thead-light" .thead-light or .thead-dark -->
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Telefone</th>
+            <th scope="col">Cliente</th>
+            <th scope="col">Endereço</th>
+            <th scope="col">Número</th>
+            <th scope="col">Cep</th>
+            <th scope="col">Bairro</th>
+            <th scope="col">Cidade</th>
+            <th scope="col">Obs</th>
+            <th scope="col">Data/Hora</th>
+            <th scope="col">Produtos</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope='row'>1</td>
+            <td>Zé</td>
+            <td>Rua das cobras</td>
+            <td>123</td>
+            <td>Teste</td>
+            <td>88500</td>
+            <td>Centro</td>
+            <td>Lages</td>
+            <td>SC</td>
+            <td>49 12343345</td>
+            <td>abc@bolinhas.com</td>
+
+            <td>
+                <form action='' method='POST' name='editUsuario'>
+                    <input type='hidden' name='idCliente' value=''>
+                    <button class='btn' type='submit' name='formEditCliente'><i class='fas fa-edit'></i></button>
+                </form>
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+{% endblock %}
