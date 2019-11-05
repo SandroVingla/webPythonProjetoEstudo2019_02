@@ -84,3 +84,22 @@ class Usuario(object):
             return "Usuário excluído com sucesso!"
         except:
             return "Ocorreu um erro na exclusão do usuário"
+
+         
+    def selectPorLogin(self, login, senha):
+        banco=Banco()
+        try:
+            c=banco.conexao.cursor()
+            c.execute("select id_usuario, nome, login, senha, grupo from tb_usuarios where login = %s and senha = %s" , (login, senha))
+            
+            for linha in c:
+                self.id_usuario=linha[0]
+                self.nome=linha[1]
+                self.login=linha[2]
+                self.senha=linha[3]
+                self.grupo=linha[4]
+            c.close()
+
+            return True
+        except:
+            return False

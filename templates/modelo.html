@@ -19,6 +19,8 @@
 </head>
 
 <body>
+     
+    {% if session.get('user', '') != '' %}
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
 
@@ -60,13 +62,14 @@
                 </div>
                 <div>
                     <li class="nav-item {% if active_page == 'formLogin' %}active{% endif %}">
-                        <a class="navbar-link" href="/">logoff</a>
+                        <a class="navbar-link" href="{{url_for('/login.logout')}}">logoff</a>
                     </li>
                 </div>
             </ul>
 
         </div>
     </nav>
+    {% endif %}
     <main>
         <div class="container">
             <div class="row">

@@ -6,7 +6,7 @@ class Banco():
         host = "127.0.0.1"
         user = "root"
         password = ""
-        db = "webPythonProjetoEstudo2019"
+        db = "db_abc_bolinhas"
         self.conexao = pymysql.connect(host, user, password, db)
         
         self.createTable()

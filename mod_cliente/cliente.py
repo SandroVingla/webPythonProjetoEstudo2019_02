@@ -46,7 +46,7 @@ def formCliente():
             cli.endereco = request.form['endereco']
             cli.observacao = request.form['observacao']
             cli.numero = request.form['numero']
-            cli.cep = request.form['grupo']
+            cli.cep = request.form['cep']
             cli.bairro = request.form['bairro']
             cli.cidade = request.form['cidade']
             cli.estado = request.form['estado']

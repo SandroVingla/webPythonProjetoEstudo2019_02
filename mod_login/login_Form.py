@@ -14,7 +14,7 @@ class LoginForm(FlaskForm):
     )
 
     password = PasswordField(
-        'Senha',
+        'password',
         validators = [DataRequired(message="Campo obrigatório")],
         render_kw = {
             'placeholder':'Senha'

@@ -2,6 +2,7 @@
 from flask import current_app, Blueprint, render_template, request, url_for, redirect, session, flash
 from .login_Form import LoginForm
 from functools import wraps
+from models.usuarioBD import Usuario
 import os
 
 bp_login = Blueprint('/login', __name__, url_prefix='/', template_folder='templates/', static_folder='static/')
@@ -10,8 +11,12 @@ bp_login = Blueprint('/login', __name__, url_prefix='/', template_folder='templa
 def login(): 
     form = LoginForm(request.form)
     #login = request.form['user']
+    #senha = request.form['senha']
     if form.validate_on_submit():
-        if (request.form.get('login') == 'sandro' and request.form.get('password') == 'mac123'):
+        login = Usuario()
+        login.selectPorLogin(request.form.get('login'), request.form.get('password'))
+
+        if  (login.id_usuario > 0):
             session.clear()
             #session['user'] = name
             
@@ -27,7 +32,7 @@ def login():
 def logout():
     session.pop('user', None)
     session.clear()  
-    return redirect(url_for('login.login'))
+    return redirect(url_for('/login.login'))
          
 # valida se o usuário esta ativo na sessão
 def validaSessao(f):
