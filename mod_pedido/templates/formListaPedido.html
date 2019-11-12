@@ -27,26 +27,28 @@
         </tr>
     </thead>
     <tbody>
+        {% for pedido in pedido %}
         <tr>
-            <th scope='row'>1</td>
-            <td>Zé</td>
-            <td>Rua das cobras</td>
-            <td>123</td>
-            <td>Teste</td>
-            <td>88500</td>
-            <td>Centro</td>
-            <td>Lages</td>
-            <td>SC</td>
-            <td>49 12343345</td>
-            <td>abc@bolinhas.com</td>
+            <th scope='row'>{{ pedido[0] }}</td>
+            <td>Z{{ pedido[1] }}</td>
+            <td>{{ pedido[2] }}</td>
+            <td>{{ pedido[3] }}</td>
+            <td>{{ pedido[4] }}</td>
+            <td>{{ pedido[5] }}</td>
+            <td>{{ pedido[6] }}</td>
+            <td>{{ pedido[7] }}</td>
+            <td>{{ pedido[8] }}</td>
+            <td>{{ pedido[9] }}</td>
+            <td>{{ pedido[10] }}</td>
 
             <td>
                 <form action='' method='POST' name='editUsuario'>
                     <input type='hidden' name='idCliente' value=''>
-                    <button class='btn' type='submit' name='formEditCliente'><i class='fas fa-edit'></i></button>
+                    <button class='btn-danger' type='submit' name='formEditCliente'><i class='fas fa-edit'></i></button>
                 </form>
             </td>
         </tr>
+        {% endfor %}
 
     </tbody>
 </table>

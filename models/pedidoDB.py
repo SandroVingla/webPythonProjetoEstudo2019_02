@@ -37,13 +37,13 @@ class Pedido():
         banco=Banco()
         try:
             c=banco.conexao.cursor()
-            c.execute('SELECT tb_pedidos.id, tb_pedidos.data_hora, tb_pedidos.observacao, tb_pedidos.id_cliente, tb_clientes.nome FROM tb_pedidos LEFT JOIN tb_clientes ON tb_pedidos.clientes_id = tb_clientes.id WHERE tb_pedidos.id = %s' , (id_pedido))
+            c.execute('SELECT tb_pedidos.id_pedido, tb_pedidos.data_hora, tb_pedidos.observacao, tb_pedidos.id_cliente FROM tb_pedidos   WHERE tb_pedidos.id_pedido = %s' , (id_pedido))
             for linha in c:
                 self.id=linha[0]
                 self.data_hora=linha[1]
                 self.observacao=linha[2]
                 self.clientes_id=linha[3]
-                self.cliente_name=linha[4]
+                
             c.close()
             if not self.id:
                 return 'Pedido não encontrado!'
@@ -67,14 +67,14 @@ class Pedido():
 
     def update(self):
         banco=Banco()
-        try:
-            c=banco.conexao.cursor()
-            c.execute('UPDATE tb_pedidos SET data_hora = %s , observacao = %s , id_cliente = %s WHERE id = %s' , (self.data_hora , self.observacao , self.clientes_id, self.id))
-            banco.conexao.commit()
-            c.close()
-            return 'Pedido atualizado com sucesso!'
-        except:
-            return 'Ocorreu um erro na alteração do pedido'
+        #try:
+        c=banco.conexao.cursor()
+        c.execute('UPDATE tb_pedidos SET observacao = %s , id_cliente = %s WHERE id_pedido = %s' , ( self.observacao , self.clientes_id, self.id))
+        banco.conexao.commit()
+        c.close()
+        return 'Pedido atualizado com sucesso!'
+       # except:
+            #return 'Ocorreu um erro na alteração do pedido'
 
 
     def delete(self):

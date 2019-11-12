@@ -14,7 +14,7 @@ class Produto(object):
         banco=Banco()
         try:
             c=banco.conexao.cursor()
-            c.execute("select id_produtos, descricao, valor, CONVERT(imagem USING utf8) from tb_produtos")
+            c.execute("select id_produto, descricao, valor, CONVERT(imagem USING utf8) from tb_produtos")
             result = c.fetchall()
             c.close()
             return result
@@ -26,7 +26,7 @@ class Produto(object):
         banco=Banco()
         try:
             c=banco.conexao.cursor()
-            c.execute("select id_produtos, descricao, valor, CONVERT(imagem USING utf8) from tb_produtos where id_produto = %s" , (id_produto))
+            c.execute("select id_produto, descricao, valor, CONVERT(imagem USING utf8) from tb_produtos where id_produto = %s" , (id_produto))
             
             for linha in c:
                 self.id_produto = linha[0]
