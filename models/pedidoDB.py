@@ -14,7 +14,7 @@ class Pedido():
         banco=Banco()
         try:
             c=banco.conexao.cursor()
-            c.execute('SELECT tb_pedidos.id, tb_pedidos.data_hora, tb_pedidos.observacao, tb_pedidos.id_cliente, tb_clientes.nome FROM tb_pedidos LEFT JOIN tb_clientes ON tb_pedidos.clientes_id = tb_clientes.id')
+            c.execute('SELECT tb_pedidos.id_pedido, tb_pedidos.data_hora, tb_pedidos.observacao, tb_pedidos.id_cliente, tb_clientes.nome FROM tb_pedidos LEFT JOIN tb_clientes ON tb_pedidos.id_cliente = tb_clientes.id_cliente')
             result = c.fetchall()
             c.close()
             return result

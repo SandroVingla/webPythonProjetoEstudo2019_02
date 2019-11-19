@@ -2,11 +2,11 @@ from models.BancoDB import Banco
 
 class pedidos_produtos():
 
-    def __init__(self, id_pedido=None, id_produto=None, quatidade=None, valor=None, observacao=''):
+    def __init__(self, id_pedido=0, id_produto=None, quantidade=None, valor=None, observacao=''):
         self.id = None
         self.id_pedido = id_pedido
         self.id_produto= id_produto
-        self.quatidade = quatidade
+        self.quantidade = quantidade
         self.valor = valor
         self.observacao = observacao
 
@@ -31,7 +31,7 @@ class pedidos_produtos():
             for linha in c:
                 self.id_pedido=linha[0]
                 self.id_produto=linha[1]
-                self.quatidade=linha[2]
+                self.quantidade=linha[2]
                 self.valor=linha[3]
                 self.observacao=linha[4]
                 return True
@@ -43,22 +43,22 @@ class pedidos_produtos():
 
     def insert(self):
         banco = Banco()
-        #try:
-        c = banco.conexao.cursor()
-        c.execute('INSERT INTO tb_pedidos_produtos(id_pedido, id_produto, quantidade, valor, observacao) VALUES (%s, %s, %s, %s, %s)' , (self.id_pedido, self.id_produto, self.quatidade, self.valor, self.observacao))
-        banco.conexao.commit()
-        self.id = c.lastrowid
-        c.close()
-        return 'Produto do pedido cadastrado com sucesso!'
-        #except:
-           # return 'Ocorreu um erro na inserção do produto do pedido'
+        try:
+            c = banco.conexao.cursor()
+            c.execute('INSERT INTO tb_pedidos_produtos(id_pedido, id_produto, quantidade, valor, observacao) VALUES (%s, %s, %s, %s, %s)' , (self.id_pedido, self.id_produto, self.quantidade, self.valor, self.observacao))
+            banco.conexao.commit()
+            self.id = c.lastrowid
+            c.close()
+            return 'Produto do pedido cadastrado com sucesso!'
+        except:
+            return 'Ocorreu um erro na inserção do produto do pedido'
 
 
     def update(self):
         banco=Banco()
         try:
             c=banco.conexao.cursor()
-            c.execute('UPDATE tb_pedidos_produtos SET  quantidade = %s, valor = %s, observacao = %s WHERE id_pedido = %s AND id_produto = %s' , (self.quatidade, self.valor, self.observacao, self.id_pedido, self.id_produto))
+            c.execute('UPDATE tb_pedidos_produtos SET  quantidade = %s, valor = %s, observacao = %s WHERE id_pedido = %s AND id_produto = %s' , (self.quantidade, self.valor, self.observacao, self.id_pedido, self.id_produto))
             banco.conexao.commit()
             c.close()
             return 'Produto do pedido atualizado com sucesso!'
@@ -70,7 +70,7 @@ class pedidos_produtos():
         banco=Banco()
         try:
             c=banco.conexao.cursor()
-            c.execute('DELETE FROM tb_pedidos_produtos WHERE pedidos_id = %s AND produtos_id = %s' , (self.pedidos_id, self.produtos_id))
+            c.execute('DELETE FROM tb_pedidos_produtos WHERE id_pedido = %s AND id_produto = %s' , (self.id_pedido, self.id_produto))
             banco.conexao.commit()
             c.close()
             return 'Produto do pedido excluído com sucesso!'
@@ -78,7 +78,7 @@ class pedidos_produtos():
             return 'Ocorreu um erro na exclusão do produto do pedido'
 
     
-    def deleteByPedido(self, order_id):
+    def deleteByPedido(self, id_pedido):
         banco=Banco()
         try:
             c=banco.conexao.cursor()
@@ -90,7 +90,7 @@ class pedidos_produtos():
             return False
 
 
-    def hasByProduct(self, product_id):
+    def hasByProduct(self, id_produto):
         banco=Banco()
         try:
             c=banco.conexao.cursor()

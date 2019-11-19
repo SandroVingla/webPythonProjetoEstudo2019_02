@@ -1,0 +1,30 @@
+{% extends "modelo.html" %}
+
+{% block content %}
+{% if pagina == 'delete' %}
+<form method="POST" action="{{url_for('pedido.formPedido', id = pedido.id)}}">
+    {% else %}
+    <form method="POST" action="{{url_for('pedido.formPedido')}}">
+        {% endif %}
+
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col-12 grid-margin">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2>{{ title }}</h2>
+                            <hr />
+                            
+                            <form action="{{ url_for('pedido.formPedido', id=pedido.id) }}" method="POST">
+                                <input type='hidden' name='id' value='{{ [1] }}'>
+                                <button class="btn btn-danger" type='submit' name='excluiProduto'>Excluir</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}

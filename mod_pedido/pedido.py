@@ -10,7 +10,9 @@ pedidoBP = Blueprint('pedido', __name__, url_prefix='/pedido', template_folder='
 @pedidoBP.route('/',methods=['get', 'post'])
 @validaSessao
 def formListaPedido():
-    return render_template('formListaPedido.html'), 200
+    pde = Pedido()
+    pedidos = pde.getAll()
+    return render_template('formListaPedido.html', pedidos=pedidos), 200
 
 @pedidoBP.route('/novoPedido', methods=['get', 'post'])
 @validaSessao
@@ -61,7 +63,7 @@ def adicionarPedidoProduto(id):
     if 'editPedido' in request.form:
         ped = Pedido(request.form['observacoes'], request.form['id_cliente'])
         ped.id=id
-        ped.update()
+        ped.update(id)
 
 
     if 'editProdutoDB' in request.form:
@@ -80,22 +82,56 @@ def adicionarPedidoProduto(id):
     return redirect(url_for('pedido.formEditarPedido', id=id))
     #return render_template('/formPedido.html', pagina = 'editar', ped = ped, cliente=cliente), 200
 
-@pedidoBP.route('/editProduto/<int:id>', methods=['get', 'post'])
+@pedidoBP.route('/editProduto/<int:id>', methods=['GET', 'POST'])
 @validaSessao
 def editProduto(id):
-
-    if 'formEditProduto' in request.form:
-        print('hfjdfhjdf')
-        prod = pedidos_produtos(
-            request.form['quantidade'],
-            request.form['valor'],
-            request.form['observacao']
-        )
-        request.form['quantidade'] = pedido.quantidade
-        
-        prod.update()
+    print(request.form)
+    prod = pedidos_produtos(request.form)
     
 
-    return redirect(url_for('pedido.formEditarPedido', id=id))
+    if "altProduto" in request.form:
+        print('formPedidl')
+
+        prod.id_produto = request.form('id_produto')
+        prod.id_pedido = request.form('id_pedido')
+        prod.quantidade = request.form['quantidade']
+        prod.valor = request.form['valor']
+        prod.observacao = request.form['observacao']
+ 
+        prod.update()
+
+        return redirect(url_for('pedido.editProduto', prod=prod, id=id))
+
+
+@pedidoBP.route('/delete',methods=['get','post'])
+@validaSessao
+def delete():
+
+    print(request.form)
+    pdr = pedidos_produtos()
+    #pedido = Pedido(id)
+
+
+    if 'excluiProduto' in request.form:
+        print('hjdhfkjdhjdfhk')
+        pdr.id_pedido=request.form['id_pedido']
+        pdr.id_produto=request.form['id_produto']
+            
+
+        #pdr.pedido = request.form['id']
+        #pdr.produto = request.form['id']
+
+
+        pdr.delete()
+
+        return redirect(url_for('pedido.formEditarPedido', id=request.form['id_pedido']))
+    return 'erro'
+    #return render_template('/delete.html', pdr=pdr, id=id, pedido=pedido,pagina = 'delete'), 200
+
+
+
+
+
+
 
 

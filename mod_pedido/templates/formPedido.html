@@ -73,7 +73,7 @@
         </div>
         <div class="col col-3">
             <div class="form-group">
-                <label for="quantidade">Quantidade</label>
+                <label for="quantidade">quantidade</label>
                 <input name="quantidade" id="quantidade" type="number" class="form-control" value="1">
             </div>
         </div>
@@ -116,7 +116,7 @@
             <tr>
                 <th>Imagem</th>
                 <th scope="col">ID</th>
-                <th scope="col">Quantidade</th>
+                <th scope="col">quantidade</th>
                 <th scope="col">valor</th>
                 <th scope="col">Observações</th>
                 <th scope="col">produto</th>
@@ -135,17 +135,41 @@
                 <td>{{ produto[5] }}</td>
                 {% set total = produto[2] * produto[3] %}
                 <td>{{ total }}</td>
+                
                 <td>
                     <form action="{{ url_for('pedido.editProduto', id = pedido.id) }}" method="POST">
-                            <button class='btn btn-primary' type='submit' name='formEditProduto'>alterar</button>
+                        <input type='hidden' name='editProduto' id="editProduto">
+                        <button class='btn btn-primary' type='submit' name='altProduto' id='altProduto'>alterar</button>
                     </form>
+                </td>
+                <td>
+                     
+                    <!--<form action="{{ url_for('pedido.editProduto', id = pedido.id) }}" method="POST">
+                        
+                        <input type='hidden' name='id' value="1">
+                        <button class='btn btn-danger' type='submit' name='excluiProduto' id='excluiProduto'>Excluir</button>
+                    </form>
+                    <form action="{{ url_for('pedido.delete', id = pedido.id) }}" method="post">
+                        <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o"></i>Excluir</button>
+                    </form>
+                    <td>
+
+                    </td>-->
+                    <form action="{{ url_for('pedido.delete', id=pedido.id) }}" method="POST">
+                        
+                        <input type='hidden' name='id_pedido' value='{{ pedido.id }}'>
+                        <input type='hidden' name='id_produto' value='{{ produto[1] }}'>
+                        <button class="btn btn-danger" type='submit' name='excluiProduto'>Excluir</button>
+                    </form>
+
+
                     
                 </td>
                 {% endfor %}
             </tr>
         </tbody>
     </table>
-   {% endif %}
+{% endif %}
 
     <!--<div class="row">
         <div class="col">

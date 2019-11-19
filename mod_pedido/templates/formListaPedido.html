@@ -7,6 +7,7 @@
     <button class="btn btn-danger" type="submit" name="+Pedido"><i class="fas fa-plus-circle"></i> + Novo
         Pedido</button>
 </form>
+ 
 <br>
 <table class="table table-sm table-hover table-responsive">
     <!--  table-dark table-bordered table-striped -->
@@ -27,7 +28,7 @@
         </tr>
     </thead>
     <tbody>
-        {% for pedido in pedido %}
+        {% for pedido in pedidos %}
         <tr>
             <th scope='row'>{{ pedido[0] }}</td>
             <td>Z{{ pedido[1] }}</td>
@@ -42,10 +43,7 @@
             <td>{{ pedido[10] }}</td>
 
             <td>
-                <form action='' method='POST' name='editUsuario'>
-                    <input type='hidden' name='idCliente' value=''>
-                    <button class='btn-danger' type='submit' name='formEditCliente'><i class='fas fa-edit'></i></button>
-                </form>
+                     <a href="{{url_for('pedido.formEditarPedido', id=pedido[0])}}" class="btn btn-primary" >editar</a>
             </td>
         </tr>
         {% endfor %}
