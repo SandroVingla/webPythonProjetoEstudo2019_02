@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Produtos do Pedido</title>
+    <style>
+  
+        li:last-child {
+            margin-bottom: 5;
+        }
+        table {
+            width: 88%;
+        }
+        table td,
+        table th {
+            text-align: left;
+        }
+
+        table th{
+            background: #9370DB;
+        }
+        table td{
+            border-bottom: solid 1px #9370DB;
+        }
+        table img{
+            max-width: 70px;
+            max-height: 70px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+        <h1>Pedido</h1>
+        <ul>
+            <li><b>Código:</b> {{ ped.id_pedidos }}</li>
+            <li><b>Código do cliente:</b> {{ ped.tb_clientes_id_clientes }}</li>
+            <li><b>Data:</b> {{ ped.data_hora }}</li>
+            <li><b>Observação:</b> {{ ped.observacao }}</li>
+        </ul>
+    </div>
+   
+
+    <div>
+        <h2>Produtos do pedido</h2>
+        {% if not produto or produto=='None' %}
+        <p>O pedido não possui produtos cadastrados.</p>
+        {% else %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Imagem</th>
+                    <th>Código</th>
+                    <th>Descrição</th>
+                    <th>Valor</th>
+                    <th>Quantidade</th>
+                    <th>Total</th>
+                    <th>Observação</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for produto in produto %}
+                <tr>
+                    <td><img src="{{ produto[7] }}"></td>
+                    <td>{{ produto[4] }}</td>
+                    <td>{{ produto[5] }}</td>
+                    <td>{{ produto[6] }}</td>
+                    <td>{{ produto[0] }}</td>
+                    <td>{{ produto[1] }}</td>
+                    <td>{{ produto[2] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+    </div>
+
+</body>
+
+</html>

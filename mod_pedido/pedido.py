@@ -1,9 +1,10 @@
-from flask import current_app, Blueprint, render_template, request, url_for, redirect, jsonify
+from flask import current_app, Blueprint, render_template, request, url_for, redirect, jsonify, make_response, flash
 from mod_login.login import validaSessao
 from models.clienteBD import Cliente
 from models.pedidoDB import Pedido
 from models.pedidos_produtosBD import pedidos_produtos
 from models.produtoDB import Produto
+import pdfkit
 
 pedidoBP = Blueprint('pedido', __name__, url_prefix='/pedido', template_folder='templates/')
 
@@ -128,7 +129,25 @@ def delete():
     return 'erro'
     #return render_template('/delete.html', pdr=pdr, id=id, pedido=pedido,pagina = 'delete'), 200
 
+@pedidoBP.route('/report/<int:id>')
+def report(id): 
 
+    ped = Pedido()
+    ret = ped.getByUser(id)
+    if not ped.id:
+        flash(ret, 'info')
+        return redirect(url_for('pedido.formListaPedido'))
+
+    ped_p = Pedido()
+    produto = ped_p.get(id)
+ 
+
+    ren = render_template('pdfPedido.html', products=products, ped=ped)
+    pdf = pdfkit.from_string(ren, False)
+    response = make_response(pdf)
+    response.headers['Content-Type'] = '/usr/local/bin/wkhtmltopdf'
+    response.headers['Content-Disposition'] = 'attachement; filename=relatorio-pedido.pdf'
+    return response
 
 
 

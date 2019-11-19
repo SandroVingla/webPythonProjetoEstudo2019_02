@@ -44,6 +44,7 @@
 
             <td>
                      <a href="{{url_for('pedido.formEditarPedido', id=pedido[0])}}" class="btn btn-primary" >editar</a>
+                     <a href="{{url_for('pedido.report', id=pedido[0])}}" name="report" class="btn btn-danger">Gerar PDF</button>
             </td>
         </tr>
         {% endfor %}

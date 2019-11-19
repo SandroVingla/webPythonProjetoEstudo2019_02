@@ -21,11 +21,11 @@ class Pedido():
         except:
             return None
 
-    def getByUser(self, user_id):
+    def getByUser(self, id):
         banco=Banco()
         try:
             c=banco.conexao.cursor()
-            c.execute('SELECT tb_pedidos.id, tb_pedidos.data_hora, tb_pedidos.observacao, tb_pedidos.id_cliente, tb_clientes.nome FROM tb_pedidos LEFT JOIN tb_clientes ON tb_pedidos.clientes_id = tb_clientes.id WHERE tb_pedidos.clientes_id = %s', (user_id))
+            c.execute('SELECT tb_pedidos.id, tb_pedidos.data_hora, tb_pedidos.observacao, tb_pedidos.id_cliente, tb_clientes.nome FROM tb_pedidos LEFT JOIN tb_clientes ON tb_pedidos.id_cliente = tb_clientes.id WHERE tb_pedidos.id_cliente = %s', (id))
             result = c.fetchall()
             c.close()
             return result
