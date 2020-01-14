@@ -29,14 +29,23 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {% if result  %}
+                                {% for row in result %}
                                 <tr>
-                                    <td>12</td>
-                                    <td>Sandro</td>
-                                    <td>san</td>
-                                    <td>1212</td>
-                                    <td>ADIMIN</td>
-                                     
+                                    <td>{{ row[1] }}</td>
+                                    <td>{{ row[2] }}</td>
+                                    <td>{{ row[3] }}</td>
+                                    <td>{{ row[4] }}</td>
+                                    <td>{{ row[5] }}</td>
+                                     {% if row[5] ==  1%}
+                                     <td>gurpo 1</td>
+                                     {% elif row[2] == 2%}
+                                     <td>grupo 2</td>
+                                     {% endif %}
+
                                 </tr>
+                                {% endfor %}
+                                {% endif %}
 
                             </tbody>
                         </table>

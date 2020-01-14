@@ -5,12 +5,16 @@ from models.pedidoDB import Pedido
 from models.pedidos_produtosBD import pedidos_produtos
 from models.produtoDB import Produto
 import pdfkit
+from models.Log import Log
+from models.validaUsuario import ValidaUsuario
 
 pedidoBP = Blueprint('pedido', __name__, url_prefix='/pedido', template_folder='templates/')
 
 @pedidoBP.route('/',methods=['get', 'post'])
 @validaSessao
 def formListaPedido():
+    log = Log()
+    log.logadorInfo("iniciando carregamento da tela inicial")
     pde = Pedido()
     pedidos = pde.getAll()
     return render_template('formListaPedido.html', pedidos=pedidos), 200
@@ -145,7 +149,7 @@ def report(id):
     ren = render_template('pdfPedido.html', products=products, ped=ped)
     pdf = pdfkit.from_string(ren, False)
     response = make_response(pdf)
-    response.headers['Content-Type'] = '/usr/local/bin/wkhtmltopdf'
+    response.headers['Content-Type'] = 'usr/local/bin/wkhtmltopdf'
     response.headers['Content-Disposition'] = 'attachement; filename=relatorio-pedido.pdf'
     return response
 

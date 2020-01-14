@@ -29,14 +29,15 @@
             <td><img src="{{ produto[3] }}">
 
         </tr>
-        {% endfor %}
+      
             
                 <form action='' method='POST' name='formProduto'>
                     <input type='hidden' name='idProduto' value=''>
-                    <button class='btn' type='submit' name='formEditProduto'><i class='fas fa-edit'></i></button>
+                    <button class='btn' type='submit' name='formEditProduto'><i class='fas fa-edit'></i></button>editar
                 </form>
             </td>
         </tr>
+        {% endfor %}
     </tbody>
 </table>
 {% endblock %}

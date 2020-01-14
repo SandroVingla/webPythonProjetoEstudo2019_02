@@ -1,9 +1,9 @@
 #coding: utf-8
-from flask import Blueprint, render_template, request, redirect, url_for, current_app
+from flask import Blueprint, render_template, request, redirect, url_for, current_app, redirect, jsonify
 from mod_login.login import validaSessao
 from models.produtoDB import Produto
 import pymysql
-import base64
+from base64 import b64encode
 import os
 
  
@@ -14,8 +14,18 @@ bp_produto = Blueprint('produto', __name__, url_prefix='/produto', template_fold
 @validaSessao
 def formListaProduto():
     produto = Produto()
-    res=produto.selectALL()
-    return render_template('formListaProdutos.html', result=res, content_type='application/json')
+    desc = request.args.get('descricao', '')
+
+    if desc:
+        prod = produto.selectProd(desc)
+    else:
+        prod=produto.selectALL()
+
+    #imagens = []
+    #for produto in prod:
+       # imagens.append(b64encode(produto[3]).decode("utf-8"))
+
+    return render_template('formListaProdutos.html', desc=desc, prod=prod),200
 
 
 @bp_produto.route("/formProduto", methods=['POST'])
@@ -27,7 +37,7 @@ def formProduto():
 @bp_produto.route('/addProduto', methods=['POST'])
 def addProduto():
     print(request.form)
-
+    
     produto=Produto(request.form)
     
     produto.id_produto = request.form['id_produto']

@@ -9,7 +9,7 @@
         <form name="usuario" method="POST" action="{{ url_for('usuario.addUser') }}">
 
             <label for="id_usuario">ID :</label>
-            <input readonly value="" type="text" name="id_usuario" id="id_usuario">
+            <input value="" type="text" name="id_usuario" id="id_usuario">
             <label for="nome">Nome:</label>
             <input value="" type="text" name="nome" id="nome" autofocus="">
             <label for="login">Login:</label>
@@ -17,6 +17,10 @@
             <label for="senha">Senha:</label>
             <input value="" type="password" name="senha" id="senha">
             <label for="grupo">Grupo:</label>
+            <select required class="custom-select" name="grupo" id="grupo">
+                <option selected value=""></option>
+                <option value="1">grupo 1</option>
+                <option value="2">grupo 2</option>
             <input value="" type="text" name="grupo" id="grupo">
 
             <button type='submit' name="salvaNovoClienteBD" id="salvaNovoClienteBD">Salvar Novo Cliente</button>

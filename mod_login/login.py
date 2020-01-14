@@ -4,11 +4,15 @@ from .login_Form import LoginForm
 from functools import wraps
 from models.usuarioBD import Usuario
 import os
+from models.Log import Log
+from models.validaUsuario import ValidaUsuario
 
 bp_login = Blueprint('/login', __name__, url_prefix='/', template_folder='templates/', static_folder='static/')
 
 @bp_login.route('/', methods=['GET', 'POST'])
 def login(): 
+    log = Log()
+    log.logadorInfo("iniciando login")
     form = LoginForm(request.form)
     #login = request.form['user']
     #senha = request.form['senha']

@@ -4,17 +4,23 @@ from .usuarioForm import usuarioForm
 from mod_login.login import validaSessao
 from models.usuarioBD import Usuario
 import pymysql
+from models.validaUsuario import ValidaUsuario
 
 bp_usuario = Blueprint('usuario', __name__, url_prefix='/usuario', template_folder='templates', static_folder='static')
 
 @bp_usuario.route('/')
 @validaSessao
 def index():
+
+    valida = ValidaUsuario
+
     return render_template('usuario.html'), 200
 
 @bp_usuario.route('/add', methods=['GET', 'POST'])
 @validaSessao
 def add():
+
+    valida = ValidaUsuario
     form = usuarioForm(request.form)
     if form.validate_on_submit():
         print('valido')
@@ -22,6 +28,8 @@ def add():
 
 @bp_usuario.route('/addUser', methods=['POST'])
 def addUser():
+
+    valida = ValidaUsuario
     
     user= Usuario()
     

@@ -4,12 +4,17 @@
 
 {% block content %}
  
+
 <body>
 
     <h1>Novo Produto</h1>
+
     
     <form name="produto" method="POST" action="{{ url_for('produto.addProduto') }}" enctype="multipart/form-data">
-            <label for="id_produto">Código :</label>
+            
+        
+        
+        <label for="id_produto">Código :</label>
             <input type="text" name="id_produto" id="id_produto">
 
             <label for="descricao">Descrição do Produto :</label>

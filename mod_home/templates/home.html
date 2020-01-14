@@ -5,6 +5,35 @@
 {% if 'user' in session %}
 
 Bem-vindo <b>{{ session['user'] }}</b>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='bootstrap-4.1.3/css/bootstrap.min.css') }}">
+    <style>
+        .text-white{
+            color: white;
+        }
+    
+    </style>
+</head>
+<body>
+    <div class="jumbotron p-3 p-m-5 text-while rounded bg-info">
+        <div class="col-md-6 px-0">
+            <h1 class="display-4 font-italic">Web Python Projeto de estudos</h1>
+            <p class="lead my-3">
+                "Projeto implementado durante aula de python do curso de Sistemas De Informação da quarta fase de Sistemas."
+            </p>
+            <p class="lead mb-0">
+                implementado no MACBOOK PRO.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
 
 {% endif %}
 {% endblock content %}
